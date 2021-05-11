@@ -32,7 +32,7 @@ class DownloadCSVJob implements ShouldQueue
         if(!file_exists($this->filesDirectory))
         {
             File::makeDirectory($this->filesDirectory, 0777, true);
-            $file = Http::get('https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19VacunasAgrupadas.csv.zip')->body();
+            $file = Http::get($this->downloadLink)->body();
             Storage::put($this->fileName, $file);
         }
     }
