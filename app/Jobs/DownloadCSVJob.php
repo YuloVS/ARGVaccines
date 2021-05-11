@@ -23,8 +23,8 @@ class DownloadCSVJob implements ShouldQueue
     public function __construct(string $downloadLink)
     {
         $this->downloadLink = $downloadLink;
-        $this->filesDirectory = storage_path("Vaccines");
-        $this->fileName = "{$this->filesDirectory}\Locations.csv";
+        $this->filesDirectory = storage_path("App\Vaccines");
+        $this->fileName = "Vaccines\Locations.csv";
     }
 
     public function handle()
