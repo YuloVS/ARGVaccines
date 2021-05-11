@@ -32,8 +32,8 @@ class DownloadCSVJob implements ShouldQueue
         if(!file_exists($this->filesDirectory))
         {
             File::makeDirectory($this->filesDirectory, 0777, true);
-            $file = Http::get($this->downloadLink)->body();
-            Storage::put($this->fileName, $file);
         }
+        $file = Http::get($this->downloadLink)->body();
+        Storage::put($this->fileName, $file);
     }
 }
