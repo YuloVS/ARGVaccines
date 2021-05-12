@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Jobs\DownloadCSVJob;
+use App\Models\QtyByLocation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\File;
@@ -25,5 +26,11 @@ class DownloadFileTest extends TestCase
     {
         $this->test_file_is_downloaded();
         $this->assertFileExists(storage_path("App\Vaccines\Covid19VacunasAgrupadas.csv"));
+    }
+
+    public function test_data_is_inserted()
+    {
+        $this->test_zip_gets_extracted();
+        $this->assertGreaterThan(0, QtyByLocation::all()->count());
     }
 }
