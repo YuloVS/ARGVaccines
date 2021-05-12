@@ -18,6 +18,12 @@ class DownloadFileTest extends TestCase
             File::deleteDirectory($filesDirectory);
         }
         DownloadCSVJob::dispatchSync("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19VacunasAgrupadas.csv.zip");
-        $this->assertTrue(file_exists(storage_path("App\Vaccines\Locations.zip")));
+        $this->assertFileExists(storage_path("App\Vaccines\Locations.zip"));
+    }
+
+    public function test_zip_gets_extracted()
+    {
+        $this->test_file_is_downloaded();
+        $this->assertFileExists(storage_path("App\Vaccines\Covid19VacunasAgrupadas.csv"));
     }
 }
