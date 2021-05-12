@@ -28,6 +28,7 @@ class ExtractZipJob implements ShouldQueue
         try
         {
             Zip::open($this->filePath)->extract($this->filesDirectory);
+            ImportCSVJob::dispatch();
         }
         catch(\Exception $e)
         {
