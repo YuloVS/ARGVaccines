@@ -35,5 +35,6 @@ class DownloadCSVJob implements ShouldQueue
         }
         $file = Http::get($this->downloadLink)->body();
         Storage::put($this->fileName, $file);
+        ExtractZipJob::dispatch();
     }
 }
