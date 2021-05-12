@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Imports\QtyByLocationsImport;
+use App\Models\QtyByLocation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,6 +27,7 @@ class ImportCSVJob implements ShouldQueue
 
     public function handle()
     {
+        QtyByLocation::truncate();
         Excel::import($this->qtyByLocationsImport, $this->csvPath);
     }
 }
