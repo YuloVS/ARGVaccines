@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e61f40b85bc05227ca263d9b976cdb2e",
+    "content-hash": "8e2fbf6fa2001c5cf4b29a2d2096f573",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1343,6 +1343,79 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "macellan/laravel-zip",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/macellan/laravel-zip.git",
+                "reference": "02752709ba03c0238b13e3d810322321dc3db2d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/macellan/laravel-zip/zipball/02752709ba03c0238b13e3d810322321dc3db2d1",
+                "reference": "02752709ba03c0238b13e3d810322321dc3db2d1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0",
+                "scrutinizer/ocular": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Macellan\\Zip\\ZipServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zip": "Macellan\\Zip\\ZipFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Macellan\\Zip\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zany Soft",
+                    "email": "info@zanysoft.co",
+                    "homepage": "http://www.zanysoft.co"
+                },
+                {
+                    "name": "Fatih Aytekin",
+                    "email": "fatih.aytekin@macellan.net",
+                    "homepage": "https://macellan.net"
+                }
+            ],
+            "description": "laravel-zip is the world's leading zip utility for file compression and backup.",
+            "homepage": "https://macellan.net",
+            "keywords": [
+                "backup",
+                "extract",
+                "laravel",
+                "laravel-zip",
+                "laravel5",
+                "merge",
+                "multiple",
+                "unzip",
+                "zip",
+                "ziparchive"
+            ],
+            "support": {
+                "source": "https://github.com/macellan/laravel-zip/tree/1.0.4"
+            },
+            "time": "2020-08-26T09:25:54+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4824,69 +4897,6 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
             "time": "2021-03-09T10:59:23+00:00"
-        },
-        {
-            "name": "zanysoft/laravel-zip",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zanysoft/laravel-zip.git",
-                "reference": "466663746c92154c48a2d490efc6724f9f6e9652"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zanysoft/laravel-zip/zipball/466663746c92154c48a2d490efc6724f9f6e9652",
-                "reference": "466663746c92154c48a2d490efc6724f9f6e9652",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0",
-                "scrutinizer/ocular": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "ZanySoft\\Zip\\ZipServiceProvider"
-                    ],
-                    "aliases": {
-                        "Zip": "ZanySoft\\Zip\\ZipFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "ZanySoft\\Zip\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Zany Soft",
-                    "email": "info@zanysoft.co",
-                    "homepage": "http://www.zanysoft.co"
-                }
-            ],
-            "description": "ZipArchive toolbox",
-            "homepage": "http://www.zanysoft.co",
-            "keywords": [
-                "merge",
-                "multiple",
-                "unzip",
-                "zip",
-                "ziparchive"
-            ],
-            "support": {
-                "issues": "https://github.com/zanysoft/laravel-zip/issues",
-                "source": "https://github.com/zanysoft/laravel-zip/tree/1.0.3"
-            },
-            "time": "2017-10-10T03:22:41+00:00"
         }
     ],
     "packages-dev": [
