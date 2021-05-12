@@ -14,8 +14,8 @@ class QtyByLocation extends Model
     public static function totalDoses($dose = null)
     {
         return $dose ?
-            QtyByLocation::groupBy("province")->selectRaw("sum({$dose}) as total_{$dose}, province")->get() :
-            QtyByLocation::groupBy("province")->selectRaw("sum(first_dose) as total_first_dose, sum(second_dose) as total_second_dose, province")->get();
+            QtyByLocation::groupBy("province")->selectRaw("sum({$dose}) as total_{$dose}, province")->orderBy("total_{$dose}", "desc")->get() :
+            QtyByLocation::groupBy("province")->selectRaw("sum(first_dose) as total_first_dose, sum(second_dose) as total_second_dose, province")->orderBy("total_first_dose", "desc")->get();
     }
 
     public static function totalFirstDoses()
