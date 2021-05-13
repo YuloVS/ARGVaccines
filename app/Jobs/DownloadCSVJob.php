@@ -30,13 +30,13 @@ class DownloadCSVJob implements ShouldQueue
 
     public function handle()
     {
+        Log::info("Download JOB");
         if(!file_exists($this->filesDirectory))
         {
             File::makeDirectory($this->filesDirectory, 0777, true);
         }
         $file = Http::get($this->downloadLink)->body();
         Storage::put($this->fileName, $file);
-        Log::info("Zip saved in {$this->fileName}");
         ExtractZipJob::dispatch();
     }
 }

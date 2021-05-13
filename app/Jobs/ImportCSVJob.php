@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportCSVJob implements ShouldQueue
@@ -27,6 +28,7 @@ class ImportCSVJob implements ShouldQueue
 
     public function handle()
     {
+        Log::info("Import JOB");
         QtyByLocation::truncate();
         Excel::import($this->qtyByLocationsImport, $this->csvPath);
     }

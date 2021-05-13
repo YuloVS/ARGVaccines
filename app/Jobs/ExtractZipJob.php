@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Macellan\Zip\Zip;
 
 class ExtractZipJob implements ShouldQueue
@@ -25,6 +26,7 @@ class ExtractZipJob implements ShouldQueue
 
     public function handle()
     {
+        Log::info("Extract JOB");
         try
         {
             Zip::open($this->filePath)->extract($this->filesDirectory);
