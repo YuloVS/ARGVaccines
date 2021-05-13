@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule
             ->job(new DownloadCSVJob("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19VacunasAgrupadas.csv.zip"))
-            ->dailyAt("10:34");
+            ->dailyAt("05:00");
     }
 
     /**
