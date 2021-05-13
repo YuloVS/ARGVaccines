@@ -21,7 +21,7 @@ class ImportCSVJob implements ShouldQueue
 
     public function __construct()
     {
-        $this->csvPath = storage_path("App\Vaccines\Covid19VacunasAgrupadas.csv");
+        $this->csvPath = storage_path("app/vaccines/Covid19VacunasAgrupadas.csv");
         $this->qtyByLocationsImport = new QtyByLocationsImport();
     }
 
