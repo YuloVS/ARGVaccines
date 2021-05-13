@@ -20,7 +20,7 @@ class ExtractZipJob implements ShouldQueue
     public function __construct()
     {
         $this->filesDirectory = storage_path("app/vaccines");
-        $this->filePath = "{$this->filesDirectory}\Locations.zip";
+        $this->filePath = "{$this->filesDirectory}/Locations.zip";
     }
 
     public function handle()
