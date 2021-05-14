@@ -18,23 +18,25 @@ class ExtractZipJob implements ShouldQueue
     private string $filesDirectory;
     private string $filePath;
 
-    public function __construct()
+    public function __construct(string $zipFileName)
     {
         $this->filesDirectory = storage_path("app/vaccines");
-        $this->filePath = "{$this->filesDirectory}/Locations.zip";
+        $this->filePath = "$this->filesDirectory/$zipFileName";
     }
 
     public function handle()
     {
-        Log::info("Extract JOB");
+        Log::info("Init Extract JOB");
         try
         {
-            Zip::open($this->filePath)->extract($this->filesDirectory);
-            ImportCSVJob::dispatch();
+            $zip = Zip::open($this->filePath);
+            $zip->extract($this->filesDirectory);
+            ImportCSVJob::dispatchSync($zip->listFiles()[0]);
         }
         catch(\Exception $e)
         {
             //TODO HANDLE EXCEPTION
         }
+        Log::info("End Extract JOB");
     }
 }
