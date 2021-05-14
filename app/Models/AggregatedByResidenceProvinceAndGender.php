@@ -7,9 +7,4 @@ use Illuminate\Database\Eloquent\Model;
 
 class AggregatedByResidenceProvinceAndGender extends Model
 {
-    protected $fillable = [
-        "province", "gender", "quantity"
-    ];
-
-
 }
