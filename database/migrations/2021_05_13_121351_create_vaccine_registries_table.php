@@ -23,7 +23,8 @@ class CreateVaccineRegistriesTable extends Migration
             $table->string("vaccinated_in_the_city", 120);
             $table->date("vaccination_date");
             $table->string("vaccine", 100);
-            $table->string("vaccination_condition", 10);
+            $table->string("vaccination_condition", 20);
+            $table->timestamps();
         });
     }
 
