@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
             ->dailyAt("05:00");
         $schedule
             ->job(new DownloadCSVJob("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip"))
-            ->dailyAt("10:07");
+            ->dailyAt("10:33");
     }
 
     /**
