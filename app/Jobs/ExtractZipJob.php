@@ -31,12 +31,12 @@ class ExtractZipJob implements ShouldQueue
         {
             $zip = Zip::open($this->filePath);
             $zip->extract($this->filesDirectory);
+            Log::info("End Extract JOB");
             ImportCSVJob::dispatchSync($zip->listFiles()[0]);
         }
         catch(\Exception $e)
         {
             //TODO HANDLE EXCEPTION
         }
-        Log::info("End Extract JOB");
     }
 }
