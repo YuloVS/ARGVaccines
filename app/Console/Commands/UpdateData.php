@@ -30,8 +30,11 @@ class UpdateData extends Command
     {
         if($this->option("download"))
         {
+            $this->warn("Downloading CSV");
             DownloadCSVJob::dispatchSync("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip");
+            $this->info("Done");
         }
+        $this->warn("Dispatching insert jobs.");
         InsertAggregateDataByResidenceProvinceAndGenderJob::dispatch();
         InsertAggregateDataByVaccinationProvinceAndAgeRangeJob::dispatch();
         InsertAggregateDataByVaccinationProvinceAndGenderJob::dispatch();
@@ -42,5 +45,6 @@ class UpdateData extends Command
         InsertAggregatedByVaccinationProvinceAndVaccinationCondition::dispatch();
         InsertAggregatedByVaccinationProvinceAndVaccinationDate::dispatch();
         InsertAggregatedByVaccinationProvinceAndVaccine::dispatch();
+        $this->info("Done.");
     }
 }
