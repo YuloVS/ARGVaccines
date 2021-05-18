@@ -18,9 +18,9 @@ class InsertAggregatedByResidenceProvinceAndVaccinationCondition implements Shou
 
     public function handle()
     {
-        AggregatedByResidenceProvinceAndVaccinationCondition::trucate();
+        AggregatedByResidenceProvinceAndVaccinationCondition::truncate();
         $records = VaccineRegistry::select("province_of_residence", "vaccination_condition", DB::raw('count(*) as quantity'))
-            ->groupBy("vaccinated_in_the_province", "vaccination_condition")
+            ->groupBy("province_of_residence", "vaccination_condition")
             ->get()->toArray();
         AggregatedByResidenceProvinceAndVaccinationCondition::insert($records);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\AggregatedByResidenceProvinceAndVaccinationDate;
+use App\Models\AggregatedByVaccinationProvinceAndVaccinationDate;
 use App\Models\VaccineRegistry;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -18,10 +18,10 @@ class InsertAggregatedByVaccinationProvinceAndVaccinationDate implements ShouldQ
 
     public function handle()
     {
-        AggregatedByResidenceProvinceAndVaccinationDate::truncate();
+        AggregatedByVaccinationProvinceAndVaccinationDate::truncate();
         $records = VaccineRegistry::select("vaccinated_in_the_province", "vaccination_date", DB::raw('count(*) as quantity'))
             ->groupBy("vaccinated_in_the_province", "vaccination_date")
             ->get()->toArray();
-        AggregatedByResidenceProvinceAndVaccinationDate::insert();
+        AggregatedByVaccinationProvinceAndVaccinationDate::insert($records);
     }
 }

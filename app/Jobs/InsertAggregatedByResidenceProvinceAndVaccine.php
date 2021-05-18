@@ -20,7 +20,7 @@ class InsertAggregatedByResidenceProvinceAndVaccine implements ShouldQueue
     {
         AggregatedByResidenceProvinceAndVaccine::truncate();
         $records = VaccineRegistry::select("province_of_residence", "vaccine", DB::raw('count(*) as quantity'))
-            ->groupBy("vaccinated_in_the_province", "vaccine")
+            ->groupBy("province_of_residence", "vaccine")
             ->get()->toArray();
         AggregatedByResidenceProvinceAndVaccine::insert($records);
     }

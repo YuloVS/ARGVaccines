@@ -20,7 +20,7 @@ class InsertAggregatedByResidenceProvinceAndVaccinationDate implements ShouldQue
     {
         AggregatedByResidenceProvinceAndVaccinationDate::truncate();
         $records = VaccineRegistry::select("province_of_residence", "vaccination_date", DB::raw('count(*) as quantity'))
-            ->groupBy("vaccinated_in_the_province", "vaccination_date")
+            ->groupBy("province_of_residence", "vaccination_date")
             ->get()->toArray();
         AggregatedByResidenceProvinceAndVaccinationDate::insert($records);
     }
