@@ -19,8 +19,8 @@ class InsertAggregatedByVaccinationProvinceAndVaccine implements ShouldQueue
     public function handle()
     {
         AggregatedByVaccinationProvinceAndVaccine::truncate();
-        $records = VaccineRegistry::select("vaccinated_in_the_province", "vaccination_date", DB::raw('count(*) as quantity'))
-            ->groupBy("vaccinated_in_the_province", "vaccination_date")
+        $records = VaccineRegistry::select("vaccinated_in_the_province", "vaccine", DB::raw('count(*) as quantity'))
+            ->groupBy("vaccinated_in_the_province", "vaccine")
             ->get()->toArray();
         AggregatedByVaccinationProvinceAndVaccine::insert($records);
     }
