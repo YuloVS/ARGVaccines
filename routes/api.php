@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndAgeRangeController;
 use App\Http\Resources\QtyByLocationCollection;
 use App\Http\Resources\TotalDosesResource;
+use App\Http\Resources\VaccineRegistryCollection;
 use App\Models\QtyByLocation;
+use App\Models\VaccineRegistry;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +39,11 @@ Route::get('/total-first-doses', function(){
 Route::get('/total-second-doses', function(){
     return new TotalDosesResource(QtyByLocation::totalSecondDoses());
 });
+
+Route::get("/province-of-residence/{province}", function($province){
+    $province = str_replace("_", " ", $province);
+    return new VaccineRegistryCollection(VaccineRegistry::provinceOfResidence($province)->cursorPaginate(1000));
+});
+
+Route::apiResource("v1/residence-province/age-range", AggregatedByResidenceProvinceAndAgeRangeController::class)->only(["index"]);
+
