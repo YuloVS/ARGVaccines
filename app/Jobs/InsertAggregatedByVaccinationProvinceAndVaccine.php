@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class InsertAggregatedByVaccinationProvinceAndVaccine implements ShouldQueue
 {
@@ -18,10 +19,12 @@ class InsertAggregatedByVaccinationProvinceAndVaccine implements ShouldQueue
 
     public function handle()
     {
+        Log::info("Init ". self::class);
         AggregatedByVaccinationProvinceAndVaccine::truncate();
         $records = VaccineRegistry::select("vaccinated_in_the_province", "vaccine", DB::raw('count(*) as quantity'))
             ->groupBy("vaccinated_in_the_province", "vaccine")
             ->get()->toArray();
         AggregatedByVaccinationProvinceAndVaccine::insert($records);
+        Log::info("End ". self::class);
     }
 }
