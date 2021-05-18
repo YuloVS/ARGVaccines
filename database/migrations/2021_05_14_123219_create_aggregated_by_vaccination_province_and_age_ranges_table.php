@@ -18,7 +18,6 @@ class CreateAggregatedByVaccinationProvinceAndAgeRangesTable extends Migration
             $table->string("vaccinated_in_the_province", 20);
             $table->string("age_range", 15);
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 

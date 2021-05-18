@@ -18,7 +18,6 @@ class CreateAggregatedByResidenceProvinceAndVaccinationConditionsTable extends M
             $table->string("province_of_residence", 20);
             $table->string("vaccination_condition", 20);
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 

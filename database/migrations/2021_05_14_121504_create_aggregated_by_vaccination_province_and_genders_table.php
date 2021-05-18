@@ -18,7 +18,6 @@ class CreateAggregatedByVaccinationProvinceAndGendersTable extends Migration
             $table->string("vaccinated_in_the_province", 20);
             $table->char("gender", 1);
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 

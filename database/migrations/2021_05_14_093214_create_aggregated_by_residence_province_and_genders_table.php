@@ -18,7 +18,6 @@ class CreateAggregatedByResidenceProvinceAndGendersTable extends Migration
             $table->string("province_of_residence", 20);
             $table->char("gender", 1);
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 

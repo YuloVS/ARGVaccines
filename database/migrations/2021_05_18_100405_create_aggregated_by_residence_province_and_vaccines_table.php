@@ -18,7 +18,6 @@ class CreateAggregatedByResidenceProvinceAndVaccinesTable extends Migration
             $table->string("province_of_residence", 20);
             $table->string("vaccine", 100);
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 

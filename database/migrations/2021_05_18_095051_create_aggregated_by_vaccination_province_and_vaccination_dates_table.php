@@ -18,7 +18,6 @@ class CreateAggregatedByVaccinationProvinceAndVaccinationDatesTable extends Migr
             $table->string("vaccinated_in_the_province", 20);
             $table->date("vaccination_date");
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 

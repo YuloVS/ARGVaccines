@@ -18,7 +18,6 @@ class CreateAggregatedByResidenceProvinceAndAgeRangesTable extends Migration
             $table->string("province_of_residence", 20);
             $table->string("age_range", 15);
             $table->unsignedInteger("quantity");
-            $table->timestamps();
         });
     }
 
