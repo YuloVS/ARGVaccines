@@ -13,6 +13,7 @@ use App\Jobs\InsertAggregatedByResidenceProvinceAndVaccine;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccinationCondition;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccinationDate;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccine;
+use App\Jobs\InsertAggregatedDataByVaccineJob;
 use Illuminate\Console\Command;
 
 class UpdateData extends Command
@@ -34,7 +35,6 @@ class UpdateData extends Command
         {
             $this->warn("Downloading CSV");
             DownloadCSVJob::dispatchSync("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip");
-            $this->info("Done");
         }
         $bar->advance();
         $this->warn("Dispatching insert jobs.");
@@ -59,6 +59,8 @@ class UpdateData extends Command
         InsertAggregatedByVaccinationProvinceAndVaccine::dispatchSync();
         $bar->advance();
         InsertAggregatedByResidenceProvinceAndVaccine::dispatchSync();
+        $bar->advance();
+        InsertAggregatedDataByVaccineJob::dispatchSync();
         $bar->advance();
         $this->info("Done.");
         $bar->finish();

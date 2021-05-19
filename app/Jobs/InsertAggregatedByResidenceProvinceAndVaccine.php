@@ -13,9 +13,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class InsertAggregatedByResidenceProvinceAndVaccine implements ShouldQueue
+class InsertAggregatedByResidenceProvinceAndVaccine implements ShouldBeUnique
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue;
 
     public function handle()
     {
