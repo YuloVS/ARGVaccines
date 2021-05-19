@@ -28,24 +28,39 @@ class UpdateData extends Command
 
     public function handle()
     {
+        $bar = $this->output->createProgressBar($this->option("download") ? 11 : 12);
+        $bar->start();
         if($this->option("download"))
         {
             $this->warn("Downloading CSV");
             DownloadCSVJob::dispatchSync("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip");
             $this->info("Done");
         }
+        $bar->advance();
         $this->warn("Dispatching insert jobs.");
-        InsertAggregateDataByResidenceProvinceAndGenderJob::dispatch();
-        InsertAggregateDataByVaccinationProvinceAndAgeRangeJob::dispatch();
-        InsertAggregateDataByVaccinationProvinceAndGenderJob::dispatch();
-        InsertAggregatedByResidenceProvinceAndAgeRangeJob::dispatch();
-        InsertAggregatedByResidenceProvinceAndVaccinationCondition::dispatch();
-        InsertAggregatedByResidenceProvinceAndVaccinationDate::dispatch();
-        InsertAggregatedByResidenceProvinceAndVaccine::dispatch();
-        InsertAggregatedByVaccinationProvinceAndVaccinationCondition::dispatch();
-        InsertAggregatedByVaccinationProvinceAndVaccinationDate::dispatch();
-        InsertAggregatedByVaccinationProvinceAndVaccine::dispatch();
-        InsertAggregatedByResidenceProvinceAndVaccine::dispatch();
+        InsertAggregateDataByResidenceProvinceAndGenderJob::dispatchSync();
+        $bar->advance();
+        InsertAggregateDataByVaccinationProvinceAndAgeRangeJob::dispatchSync();
+        $bar->advance();
+        InsertAggregateDataByVaccinationProvinceAndGenderJob::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByResidenceProvinceAndAgeRangeJob::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByResidenceProvinceAndVaccinationCondition::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByResidenceProvinceAndVaccinationDate::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByResidenceProvinceAndVaccine::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByVaccinationProvinceAndVaccinationCondition::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByVaccinationProvinceAndVaccinationDate::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByVaccinationProvinceAndVaccine::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByResidenceProvinceAndVaccine::dispatchSync();
+        $bar->advance();
         $this->info("Done.");
+        $bar->finish();
     }
 }
