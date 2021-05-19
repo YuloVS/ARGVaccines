@@ -25,12 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule
+        /*$schedule
             ->job(new DownloadCSVJob("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19VacunasAgrupadas.csv.zip", "Locations.zip"))
             ->dailyAt("03:00");
         $schedule
             ->job(new DownloadCSVJob("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip"))
-            ->dailyAt("03:30");
+            ->dailyAt("03:30");*/
+        $schedule->command("update:data --d")->dailyAt("03:30");
     }
 
     /**
