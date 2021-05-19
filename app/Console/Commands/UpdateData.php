@@ -45,6 +45,7 @@ class UpdateData extends Command
         InsertAggregatedByVaccinationProvinceAndVaccinationCondition::dispatch();
         InsertAggregatedByVaccinationProvinceAndVaccinationDate::dispatch();
         InsertAggregatedByVaccinationProvinceAndVaccine::dispatch();
+        InsertAggregatedByResidenceProvinceAndVaccine::dispatch();
         $this->info("Done.");
     }
 }
