@@ -9,6 +9,7 @@ use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndAgeRangeContro
 use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndGenderController;
 use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndVaccinationConditionController;
 use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndVaccinationDateController;
+use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndVaccineController;
 use App\Http\Resources\QtyByLocationCollection;
 use App\Http\Resources\TotalDosesResource;
 use App\Http\Resources\VaccineRegistryCollection;
@@ -63,3 +64,4 @@ Route::apiResource("v1/vaccination-province/age-range", AggregatedByVaccinationP
 Route::apiResource("v1/vaccination-province/gender", AggregatedByVaccinationProvinceAndGenderController::class)->only(["index"]);
 Route::apiResource("v1/vaccination-province/vaccination-condition", AggregatedByVaccinationProvinceAndVaccinationConditionController::class)->only(["index"]);
 Route::apiResource("v1/vaccination-province/vaccination-date", AggregatedByVaccinationProvinceAndVaccinationDateController::class)->only(["index"]);
+Route::apiResource("v1/vaccination-province/vaccine", AggregatedByVaccinationProvinceAndVaccineController::class)->only(["index"]);
