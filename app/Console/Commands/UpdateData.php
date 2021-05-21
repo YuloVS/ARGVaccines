@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\DownloadCSVJob;
+use App\Jobs\ImportCSVJob;
 use App\Jobs\InsertAggregateDataByResidenceProvinceAndGenderJob;
 use App\Jobs\InsertAggregateDataByVaccinationProvinceAndAgeRangeJob;
 use App\Jobs\InsertAggregateDataByVaccinationProvinceAndGenderJob;
@@ -18,7 +19,7 @@ use Illuminate\Console\Command;
 
 class UpdateData extends Command
 {
-    protected $signature = 'update:data {--d|download}';
+    protected $signature = 'update:data {--d|download} {--i|import}';
 
     protected $description = 'Download the CSV and update all the vaccine related tables.';
 
@@ -35,6 +36,11 @@ class UpdateData extends Command
         {
             $this->warn("Downloading CSV");
             DownloadCSVJob::dispatchSync("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip");
+        }
+        if($this->option("import"))
+        {
+            $this->warn("Importing vaccines data");
+            ImportCSVJob::dispatchSync("datos_nomivac_covid19.csv");
         }
         $bar->advance();
         $this->warn("Dispatching insert jobs.");
