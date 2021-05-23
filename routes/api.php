@@ -14,6 +14,7 @@ use App\Http\Controllers\API\v1\AggregatedByVaccineController;
 use App\Http\Resources\QtyByLocationCollection;
 use App\Http\Resources\TotalDosesResource;
 use App\Http\Resources\VaccineRegistryCollection;
+use App\Models\Province;
 use App\Models\QtyByLocation;
 use App\Models\VaccineRegistry;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,8 @@ Route::get("/province-of-residence/{province}", function($province){
     $province = str_replace("_", " ", $province);
     return new VaccineRegistryCollection(VaccineRegistry::provinceOfResidence($province)->cursorPaginate(1000));
 });
+
+Route::get("provinces", function(){ return Province::all(); });
 
 Route::apiResource("v1/residence-province/age-range", AggregatedByResidenceProvinceAndAgeRangeController::class)->only(["index"]);
 Route::apiResource("v1/residence-province/gender", AggregatedByResidenceProvinceAndGenderController::class)->only(["index"]);
