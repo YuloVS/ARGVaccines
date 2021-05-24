@@ -7,6 +7,7 @@ use App\Jobs\ImportCSVJob;
 use App\Jobs\InsertAggregateDataByResidenceProvinceAndGenderJob;
 use App\Jobs\InsertAggregateDataByVaccinationProvinceAndAgeRangeJob;
 use App\Jobs\InsertAggregateDataByVaccinationProvinceAndGenderJob;
+use App\Jobs\InsertAggregatedByAgeRangeJob;
 use App\Jobs\InsertAggregatedByResidenceProvinceAndAgeRangeJob;
 use App\Jobs\InsertAggregatedByResidenceProvinceAndVaccinationCondition;
 use App\Jobs\InsertAggregatedByResidenceProvinceAndVaccinationDate;
@@ -30,7 +31,7 @@ class UpdateData extends Command
 
     public function handle()
     {
-        $bar = $this->output->createProgressBar($this->option("download") ? 11 : 12);
+        $bar = $this->output->createProgressBar($this->option("download") ? 13 : 14); // TODO SET PROPER STEPS
         $bar->start();
         if($this->option("download"))
         {
@@ -67,6 +68,8 @@ class UpdateData extends Command
         InsertAggregatedByResidenceProvinceAndVaccine::dispatchSync();
         $bar->advance();
         InsertAggregatedDataByVaccineJob::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByAgeRangeJob::dispatchSync();
         $bar->advance();
         $this->info("Done.");
         $bar->finish();
