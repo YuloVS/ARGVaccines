@@ -69,4 +69,5 @@ Route::apiResource("v1/vaccination-province/gender", AggregatedByVaccinationProv
 Route::apiResource("v1/vaccination-province/vaccination-condition", AggregatedByVaccinationProvinceAndVaccinationConditionController::class)->only(["index"]);
 Route::apiResource("v1/vaccination-province/vaccination-date", AggregatedByVaccinationProvinceAndVaccinationDateController::class)->only(["index"]);
 Route::apiResource("v1/vaccination-province/vaccine", AggregatedByVaccinationProvinceAndVaccineController::class)->only(["index"]);
+
 Route::apiResource("v1/vaccines", AggregatedByVaccineController::class)->only(["index"]);
