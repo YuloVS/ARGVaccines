@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\v1\AggregatedByAgeRangeController;
+use App\Http\Controllers\API\v1\AggregatedByGenderController;
 use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndAgeRangeController;
 use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndGenderController;
 use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndVaccinationConditionController;
@@ -73,3 +74,4 @@ Route::apiResource("v1/vaccination-province/vaccine", AggregatedByVaccinationPro
 
 Route::apiResource("v1/vaccines", AggregatedByVaccineController::class)->only(["index"]);
 Route::apiResource("v1/age-range", AggregatedByAgeRangeController::class)->only(["index"]);
+Route::apiResource("v1/gender", AggregatedByGenderController::class)->only(["index"]);
