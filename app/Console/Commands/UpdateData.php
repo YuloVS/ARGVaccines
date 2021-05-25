@@ -14,6 +14,7 @@ use App\Jobs\InsertAggregatedByResidenceProvinceAndVaccinationCondition;
 use App\Jobs\InsertAggregatedByResidenceProvinceAndVaccinationDate;
 use App\Jobs\InsertAggregatedByResidenceProvinceAndVaccine;
 use App\Jobs\InsertAggregatedByVaccinationConditionJob;
+use App\Jobs\InsertAggregatedByVaccinationDateJob;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccinationCondition;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccinationDate;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccine;
@@ -33,7 +34,7 @@ class UpdateData extends Command
 
     public function handle()
     {
-        $bar = $this->output->createProgressBar($this->option("download") ? 15 : 16); // TODO SET PROPER STEPS
+        $bar = $this->output->createProgressBar($this->option("download") ? 16 : 17); // TODO SET PROPER STEPS
         $bar->start();
         if($this->option("download"))
         {
@@ -76,6 +77,8 @@ class UpdateData extends Command
         InsertAggregatedByGenderJob::dispatchSync();
         $bar->advance();
         InsertAggregatedByVaccinationConditionJob::dispatchSync();
+        $bar->advance();
+        InsertAggregatedByVaccinationDateJob::dispatchSync();
         $bar->advance();
         $this->info("Done.");
         $bar->finish();
