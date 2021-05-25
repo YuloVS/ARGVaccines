@@ -7,6 +7,7 @@ use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndGenderController
 use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndVaccinationConditionController;
 use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndVaccinationDateController;
 use App\Http\Controllers\API\v1\AggregatedByResidenceProvinceAndVaccineController;
+use App\Http\Controllers\API\v1\AggregatedByVaccinationConditionController;
 use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndAgeRangeController;
 use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndGenderController;
 use App\Http\Controllers\API\v1\AggregatedByVaccinationProvinceAndVaccinationConditionController;
@@ -75,3 +76,4 @@ Route::apiResource("v1/vaccination-province/vaccine", AggregatedByVaccinationPro
 Route::apiResource("v1/vaccines", AggregatedByVaccineController::class)->only(["index"]);
 Route::apiResource("v1/age-range", AggregatedByAgeRangeController::class)->only(["index"]);
 Route::apiResource("v1/gender", AggregatedByGenderController::class)->only(["index"]);
+Route::apiResource("v1/vaccination-condition", AggregatedByVaccinationConditionController::class)->only(["index"]);
