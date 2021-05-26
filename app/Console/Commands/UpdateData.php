@@ -23,7 +23,7 @@ use Illuminate\Console\Command;
 
 class UpdateData extends Command
 {
-    protected $signature = 'update:data {--d|download} {--i|import}';
+    protected $signature = 'update:data {--d|download} {--i|import} {--O|only}';
 
     protected $description = 'Download the CSV and update all the vaccine related tables.';
 
@@ -40,6 +40,7 @@ class UpdateData extends Command
         {
             $this->warn("Downloading CSV");
             DownloadCSVJob::dispatchSync("https://sisa.msal.gov.ar/datos/descargas/covid-19/files/datos_nomivac_covid19.zip", "VaccineRegistry.zip");
+            if($this->option("only")) return;
         }
         if($this->option("import"))
         {
