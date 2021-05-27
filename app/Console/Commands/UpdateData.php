@@ -19,6 +19,7 @@ use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccinationCondition;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccinationDate;
 use App\Jobs\InsertAggregatedByVaccinationProvinceAndVaccine;
 use App\Jobs\InsertAggregatedDataByVaccineJob;
+use App\Jobs\InsertVaccineQuantityJob;
 use Illuminate\Console\Command;
 
 class UpdateData extends Command
@@ -34,7 +35,7 @@ class UpdateData extends Command
 
     public function handle()
     {
-        $bar = $this->output->createProgressBar($this->option("download") ? 16 : 17); // TODO SET PROPER STEPS
+        $bar = $this->output->createProgressBar($this->option("download") ? 17 : 18); // TODO SET PROPER STEPS
         $bar->start();
         if($this->option("download"))
         {
@@ -80,6 +81,8 @@ class UpdateData extends Command
         InsertAggregatedByVaccinationConditionJob::dispatchSync();
         $bar->advance();
         InsertAggregatedByVaccinationDateJob::dispatchSync();
+        $bar->advance();
+        InsertVaccineQuantityJob::dispatchSync();
         $bar->advance();
         $this->info("Done.");
         $bar->finish();
