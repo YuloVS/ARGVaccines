@@ -8,6 +8,7 @@ use App\Http\Resources\AggregatedByResidenceProvinceAndAgeRangeCollection;
 use App\Http\Resources\AggregatedByResidenceProvinceAndAgeRangeResource;
 use App\Models\AggregatedByResidenceProvinceAndAgeRange;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByResidenceProvinceAndAgeRangeController extends Controller
 {
@@ -17,11 +18,9 @@ class AggregatedByResidenceProvinceAndAgeRangeController extends Controller
     public function index(Request $request)
     : AggregatedByResidenceProvinceAndAgeRangeCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByResidenceProvinceAndAgeRange::query(), $request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_residence_province_and_age_ranges"), $request);
         return new AggregatedByResidenceProvinceAndAgeRangeCollection(
-            AggregatedByResidenceProvinceAndAgeRangeResource::make(
-                $query->get()
-            )
+            AggregatedByResidenceProvinceAndAgeRangeResource::make($data)
         );
     }
 }

@@ -8,15 +8,16 @@ use App\Http\Resources\AggregatedByVaccinationProvinceAndAgeRangeCollection;
 use App\Http\Resources\AggregatedByVaccinationProvinceAndAgeRangeResource;
 use App\Models\AggregatedByVaccinationProvinceAndAgeRange;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByVaccinationProvinceAndAgeRangeController extends Controller
 {
     public function index(Request $request)
     : AggregatedByVaccinationProvinceAndAgeRangeCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByVaccinationProvinceAndAgeRange::query(), $request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_vaccination_province_and_age_ranges"), $request);
         return new AggregatedByVaccinationProvinceAndAgeRangeCollection(
-            AggregatedByVaccinationProvinceAndAgeRangeResource::make($query->get())
+            AggregatedByVaccinationProvinceAndAgeRangeResource::make($data)
         );
     }
 }

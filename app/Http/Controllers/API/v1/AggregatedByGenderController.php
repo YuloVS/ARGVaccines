@@ -8,15 +8,16 @@ use App\Http\Resources\AggregatedByGenderCollection;
 use App\Http\Resources\AggregatedByGenderResource;
 use App\Models\AggregatedByGender;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByGenderController extends Controller
 {
     public function index(Request $request)
     : AggregatedByGenderCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByGender::query(), $request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_genders"), $request);
         return new AggregatedByGenderCollection(
-            AggregatedByGenderResource::make($query->get())
+            AggregatedByGenderResource::make($data)
         );
     }
 }

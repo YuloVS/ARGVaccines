@@ -8,15 +8,16 @@ use App\Http\Resources\AggregatedByResidenceProvinceAndVaccinationDateCollection
 use App\Http\Resources\AggregatedByResidenceProvinceAndVaccinationDateResource;
 use App\Models\AggregatedByResidenceProvinceAndVaccinationDate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByResidenceProvinceAndVaccinationDateController extends Controller
 {
     public function index(Request $request)
     : AggregatedByResidenceProvinceAndVaccinationDateCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByResidenceProvinceAndVaccinationDate::query(), $request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_residence_province_and_vaccination_dates"), $request);
         return new AggregatedByResidenceProvinceAndVaccinationDateCollection(
-            AggregatedByResidenceProvinceAndVaccinationDateResource::make($query->get())
+            AggregatedByResidenceProvinceAndVaccinationDateResource::make($data)
         );
     }
 }

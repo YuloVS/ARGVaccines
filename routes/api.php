@@ -81,4 +81,4 @@ Route::apiResource("v1/gender", AggregatedByGenderController::class)->only(["ind
 Route::apiResource("v1/vaccination-condition", AggregatedByVaccinationConditionController::class)->only(["index"]);
 Route::apiResource("v1/vaccination-date", AggregatedByVaccinationDateController::class)->only(["index"]);
 
-Route::apiResource("v1/vaccines-quantity", VaccineQuantityController::class)->only(["index"]);
+Route::apiResource("v1/vaccines-quantity", VaccineQuantityController::class)->only(["index"]); //TODO REPLACE FOR PROPER METHOD

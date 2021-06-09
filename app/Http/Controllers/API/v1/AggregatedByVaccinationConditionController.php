@@ -6,17 +6,17 @@ use App\Helpers\RequestQueryBuilder;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AggregatedByVaccinationConditionCollection;
 use App\Http\Resources\AggregatedByVaccinationConditionResource;
-use App\Models\AggregatedByVaccinationCondition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByVaccinationConditionController extends Controller
 {
     public function index(Request $request)
     : AggregatedByVaccinationConditionCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByVaccinationCondition::query(), $request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_vaccination_conditions"), $request);
         return new AggregatedByVaccinationConditionCollection(
-            AggregatedByVaccinationConditionResource::make($query->get())
+            AggregatedByVaccinationConditionResource::make($data)
         );
     }
 }

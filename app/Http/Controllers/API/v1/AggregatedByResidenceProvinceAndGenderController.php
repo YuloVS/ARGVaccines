@@ -8,6 +8,7 @@ use App\Http\Resources\AggregatedByResidenceProvinceAndGenderCollection;
 use App\Http\Resources\AggregatedByResidenceProvinceAndGenderResource;
 use App\Models\AggregatedByResidenceProvinceAndGender;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByResidenceProvinceAndGenderController extends Controller
 {
@@ -17,9 +18,9 @@ class AggregatedByResidenceProvinceAndGenderController extends Controller
     public function index(Request $request)
     : AggregatedByResidenceProvinceAndGenderCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByResidenceProvinceAndGender::query(), $request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_residence_province_and_genders"), $request);
         return new AggregatedByResidenceProvinceAndGenderCollection(
-            AggregatedByResidenceProvinceAndGenderResource::make($query->get())
+            AggregatedByResidenceProvinceAndGenderResource::make($data)
         );
     }
 }

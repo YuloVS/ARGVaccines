@@ -8,15 +8,16 @@ use App\Http\Resources\AggregatedByAgeRangeCollection;
 use App\Http\Resources\AggregatedByAgeRangeResource;
 use App\Models\AggregatedByAgeRange;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AggregatedByAgeRangeController extends Controller
 {
     public function index(Request $request)
     : AggregatedByAgeRangeCollection
     {
-        $query = RequestQueryBuilder::buildQuery(AggregatedByAgeRange::query(),$request);
+        $data = RequestQueryBuilder::buildCollection(Cache::get("aggregated_by_age_ranges"), $request);
         return new AggregatedByAgeRangeCollection(
-            AggregatedByAgeRangeResource::make($query->get())
+            AggregatedByAgeRangeResource::make($data)
         );
     }
 }
